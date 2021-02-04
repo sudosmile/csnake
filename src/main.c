@@ -101,8 +101,9 @@ int main(int arc, char **arv, char **env)
     init_map();
     system("/bin/stty raw -echo");
     while (++i) {
-        if (!(i % (SIZE * 2)) || i == 1)
+        if (!(i % (SIZE * 2)) || i == 1) {
             dot_to_map();
+        }
         player_to_map(i);
         print_map();
     }
