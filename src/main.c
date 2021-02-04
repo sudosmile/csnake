@@ -87,17 +87,19 @@ void print_map()
     write(1, RET, 4);
     for (i = 0; i < SIZE; i++) {
         write(1, map[i], SIZE);   // prints the map line by line
-        write(1, "|\n", 2);     // faster than char by char.
+        write(1, "|", 1);
+        write(1, "\r\n", 2);     // faster than char by char.
     }
     for (i = 0; i < SIZE; i++)
         write(1, "-", 1);
-    write(1, "\n", 1);
+    write(1, "\r\nhjkl to move (vim style)\r\n", 28);
 }
 
 int main(int arc, char **arv, char **env)
 {
     int i = 0;
     init_map();
+    system("/bin/stty raw -echo");
     while (++i) {
         if (!(i % (SIZE * 2)) || i == 1)
             dot_to_map();
