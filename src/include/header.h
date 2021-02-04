@@ -18,8 +18,9 @@ typedef struct {
     int x, y;
 } pos;
 
-typedef struct {
+typedef struct player{
     pos head;
+    struct player *next;
 } player;
 
 #endif /* HEADER_H_ */

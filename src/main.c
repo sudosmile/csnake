@@ -11,14 +11,6 @@ pos current_dot;
 
 player snake;
 
-pos gen_random()
-{
-    pos tmp;
-    tmp.x = (rand() % SIZE + 1);
-    tmp.y = (rand() % SIZE + 1);
-    return tmp;
-}
-
 void init_map()
 {
     int i, j;
@@ -28,6 +20,21 @@ void init_map()
         }
 
     }
+}
+
+pos gen_random()
+{
+    pos tmp;
+    tmp.x = (rand() % SIZE + 1);
+    tmp.y = (rand() % SIZE + 1);
+    return tmp;
+}
+
+int eq_pos(pos first, pos second)
+{
+    if (first.x == second.x && first.y == second.y)
+        return 1;
+    return 0;
 }
 
 void dot_to_map()
@@ -70,7 +77,7 @@ void player_to_map(int init)
         exit(0);
     }
     end:
-        map[snake.head.x][snake.head.y] = '#';
+    map[snake.head.x][snake.head.y] = '#';
 }
 
 void print_map()
@@ -90,10 +97,9 @@ void print_map()
 int main(int arc, char **arv, char **env)
 {
     int i = 0;
-    /*system ("/bin/stty raw");*/
     init_map();
     while (++i) {
-        if (!(i % 20) || i == 1)
+        if (!(i % (SIZE * 2)) || i == 1)
             dot_to_map();
         player_to_map(i);
         print_map();
